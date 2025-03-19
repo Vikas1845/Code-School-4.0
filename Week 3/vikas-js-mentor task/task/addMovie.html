@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Movie Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://kit.fontawesome.com/7403d24233.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        background-image: url(./photos/Addmovie.avif);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+
+      body {
+        position: relative;
+        z-index: 1;
+      }
+      .text-shadow {
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 5px #dc3545 !important;
+      }
+      .rounded-form {
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+      }
+      .error-message {
+        color: red;
+        font-size: 0.875em;
+      }
+    </style>
+  </head>
+  <body class="mb-2">
+    <nav class="navbar navbar-expand-lg bg-danger sticky-top">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand text-white text-shadow fs-4"
+          href="adminPage.html"
+          >ShowTime</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+            <li class="nav-item">
+              <a class="nav-link active" href="addMovie.html" id="showForm"
+                >Add Movie</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="addtheater.html">Add Theatre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="new.html">Your Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="yourtheaters.html">Your Theatres</a>
+            </li>
+          </ul>
+          <a href="adminLogin.html"
+            ><i
+              class="fa fa-sign-out text-dark"
+              style="font-size: 24px"
+              id="logout"
+            ></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-2">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <form class="rounded-form" id="movieForm">
+            <h2 class="text-center text-danger">Add Movie</h2>
+
+            <div class="mb-3">
+              <label for="movieName" class="form-label">New Movie Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="movieName"
+                placeholder="Movie Name"
+              />
+              <p class="error-message"></p>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                placeholder="About movie"
+                rows="3"
+              ></textarea>
+              <p class="error-message"></p>
+            </div>
+            <div class="mb-3">
+              <label for="directorName" class="form-label">Director</label>
+              <input
+                type="text"
+                class="form-control"
+                id="directorName"
+                placeholder="Director Name"
+              />
+              <p class="error-message"></p>
+            </div>
+            <div class="mb-3">
+              <label for="heroName" class="form-label">Hero</label>
+              <input
+                type="text"
+                class="form-control"
+                id="heroName"
+                placeholder="Hero Name"
+              />
+              <p class="error-message"></p>
+            </div>
+            <div class="mb-3">
+              <label for="heroineName" class="form-label">Heroine</label>
+              <input
+                type="text"
+                class="form-control"
+                id="heroineName"
+                placeholder="Heroine Name"
+              />
+              <p class="error-message"></p>
+            </div>
+            <div class="mb-3">
+              <label for="formImage" class="form-label">Movie Poster</label>
+              <input
+                class="form-control"
+                type="file"
+                id="formImage"
+                accept="image/*"
+              />
+              <p class="error-message"></p>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Languages</label><br />
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="telugulanguage"
+                  value="Telugu"
+                />
+                <label class="form-check-label" for="telugulanguage"
+                  >Telugu</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="hindilanguage"
+                  value="Hindi"
+                />
+                <label class="form-check-label" for="hindilanguage"
+                  >Hindi</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="englishlanguage"
+                  value="English"
+                />
+                <label class="form-check-label" for="englishlanguage"
+                  >English</label
+                >
+              </div>
+              <p class="error-message"></p>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex gap-sm-5">
+                <h5 class="mt-2">Add required theaters with show timings</h5>                
+              </div>
+              <div class="row" id="theaters-table"></div>
+              </div>
+              <div class="row" id="add-theater-fields-row">
+                <div class="col-4">
+                  <div
+                    id="theaters-dropdown-div"
+                    style="margin-bottom: 10px"
+                  ></div>
+                </div>
+                <div class="col-4">
+                  <div
+                    id="show-selection-div"
+                    style="margin-bottom: 10px"
+                  ></div>
+                </div>
+                <div class="col-4" id="save-btn">
+                 
+                </div>
+              </div>
+              <div> 
+                <button type="button" class="btn btn-danger" id="add-theater" onclick="addTheater()">
+                  Add Theater
+                </button>
+              </div>
+              <div>
+                <button type="submit"
+            id="submitBtn"
+            class="btn btn-danger btn-block" style="width: 100%;
+    margin-top: 20px;">
+            &rarr;
+            </button>
+              </div>
+            </div>
+
+            
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      var theaterData = JSON.parse(localStorage.getItem("theaterData"));
+      var selectedTheaterName = "";
+     
+      function addTheater() {
+        document.getElementById("add-theater-fields-row").style.display = "flex";
+        document.getElementById("theaters-dropdown-div").innerHTML = "";
+
+          var theaterFields = "";
+        theaterData.forEach((theater) => {
+          theaterFields =
+            theaterFields +
+            `<option value="${theater.theaterName}">${theater.theaterName}</option>`;
+        });
+        $("#theaters-dropdown-div").append(
+          '<select class="form-select" aria-label="Default select example" id="theaters-dropdown" onchange="selectTheater()"> <option value="" >Select Theater</option>' +
+            theaterFields +
+            "</select>"
+        );
+      }
+      function selectTheater() {
+        let selectedTheaterName =
+          document.getElementById("theaters-dropdown").value;
+        theaterData.forEach((theater) => {
+          if (theater.theaterName == selectedTheaterName) {
+            var showTimings = theater.showTimings;
+            var text = "";
+            for (var a = 0; a < showTimings.length; ++a) {
+              text =
+                text +
+                `<li class="px-2 pb-2">
+                  <input
+                    type="checkbox"
+                    class="form-check-input category-option"
+                    id="${showTimings[a]}"
+                    value="${showTimings[a]}"
+                  />
+                  <label for="${showTimings[a]}">${showTimings[a]}</label>
+                </li>`;
+            }
+
+            var showTimingscode = `
+            <div class="dropdown" id="seatCategories">
+              <button
+                class="btn btn-white border dropdown-toggle w-100 text-start"
+                type="button"
+                id="multiSelectDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Select Shows
+              </button>
+              <ul
+                class="dropdown-menu w-100"
+                aria-labelledby="multiSelectDropdown"
+              >
+                <li class="px-2 pb-2">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="select-all-categories"
+                  />
+                  <label for="select-all-categories">Select all Shows</label>
+                </li>
+
+                ${text}
+              </ul>
+            </div>`;
+          
+            // var showTimingscode = `<p>Select Timings :</p> ${showTimings}`;
+            document.getElementById("show-selection-div").innerHTML =
+              showTimingscode;
+              document.getElementById("save-btn").innerHTML=` <button type="button" class="btn btn-primary" onclick="saveTheater()">
+                    Save
+                  </button>`
+
+                  let selectAllCategories = document.getElementById("select-all-categories")
+          if(selectAllCategories){
+             selectAllCategories.addEventListener("change",(event)=>{
+              let isChecked = $(event.target).is(":checked");
+              $(".category-option").prop("checked",isChecked)
+            })
+          }
+          }
+        });
+          }
+         
+           
+      var theatersArray = [];
+      function saveTheater(){
+        let theaterName =   document.getElementById("theaters-dropdown").value;
+        theaterData = theaterData.filter(item => item.theaterName !== theaterName)
+        console.log(theaterData)
+        theatersArray.push({
+          theaterName,
+          showTimings: $(".category-option:checked")
+            .map(function () {
+              return $(this).val();
+            })
+            .get(),
+        });
+        var theatersTableCode = "";
+        theatersArray.forEach((theater) => {
+          theatersTableCode += `<tr>
+              <th scope="row">${theater.theaterName}</th>
+              <td>${theater.showTimings.join(", ")}</td>
+            </tr>`;
+       }) 
+       document.getElementById("theaters-table").innerHTML = `<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Theater Name</th>
+      <th scope="col">Selected Shows</th>
+    </tr>
+  </thead>
+  <tbody> ${theatersTableCode}</tbody>
+</table>`;
+        console.log(theatersArray);
+        document.getElementById("add-theater-fields-row").style.display = "none";
+      };
+      let role = localStorage.getItem("role");
+      if (!role) {
+        window.location.href = "adminLogin.html";
+      }
+
+      $(document).ready(function () {
+        $("#logout").click(function () {
+          localStorage.removeItem("role");
+        });
+
+        let formFields = [
+          {
+            id: "movieName",
+            type: "text",
+            label: "Movie Name",
+            rules: ["required", "min:3"],
+            key: "movieName",
+          },
+          {
+            id: "description",
+            type: "text",
+            label: "Description",
+            rules: ["required", "min:20"],
+            key: "description",
+          },
+          {
+            id: "directorName",
+            type: "text",
+            label: "Director",
+            rules: ["required", "min:3"],
+            key: "directorName",
+          },
+          {
+            id: "heroName",
+            type: "text",
+            label: "Hero",
+            rules: ["required", "min:3"],
+            key: "heroName",
+          },
+          {
+            id: "heroineName",
+            type: "text",
+            label: "Heroine",
+            rules: ["required", "min:3"],
+            key: "heroineName",
+          },
+          {
+            id: "formImage",
+            type: "file",
+            label: "Poster",
+            rules: ["required"],
+            key: "formImage",
+          },
+        ];
+
+        function validateField(field) {
+          let inputValue = $(`#${field.id}`).val();
+          let errorDisplay = $(`#${field.id} ~ p`);
+          for (let rule of field.rules) {
+            if (rule === "required" && !inputValue) {
+              errorDisplay.text(`${field.label} is mandatory`);
+              return false;
+            }
+            if (rule.startsWith("min")) {
+              const minLength = parseInt(rule.split(":")[1]);
+              if (inputValue.length < minLength) {
+                errorDisplay.text(
+                  `${field.label} must have at least ${minLength} characters`
+                );
+                return false;
+              }
+            }
+          }
+          errorDisplay.text("");
+          return true;
+        }
+
+        function validateAllFields() {
+          let isValid = true;
+          for (let field of formFields) {
+            if (!validateField(field)) {
+              isValid = false;
+            }
+          }
+          return isValid;
+        }
+
+        function storeMovieData() {
+          const fileInput = $("#formImage")[0];
+          const file = fileInput.files[0];
+
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const movieFormData = {
+                movieName: $("#movieName").val(),
+                description: $("#description").val(),
+                directorName: $("#directorName").val(),
+                heroName: $("#heroName").val(),
+                heroineName: $("#heroineName").val(),
+                formImage: e.target.result, // Store base64 image data
+                languages: [],
+                // theaters: [
+                //   {
+                //     theaterName: selectedTheaterName,
+                //     showTimings: $(".category-option:checked")
+                //       .map(function () {
+                //         return $(this).val();
+                //       })
+                //       .get(),
+                //   },
+                // ],
+                theaters: theatersArray,
+              };
+
+              $("input[type='checkbox']:checked").each(function () {
+                movieFormData.languages.push($(this).val());
+              });
+
+              let moviesFromLocStg =
+                JSON.parse(localStorage.getItem("movieData")) || [];
+              moviesFromLocStg.push(movieFormData);
+              localStorage.setItem(
+                "movieData",
+                JSON.stringify(moviesFromLocStg)
+              );
+
+              // console.log("Movie Data:", movieData); 
+              alert("Movie added successfully!");
+              window.location.href = "new.html";
+              $("#movieForm")[0].reset();
+            };
+            reader.readAsDataURL(file); // Convert image to base64
+          } else {
+            alert("Please upload a poster image.");
+          }
+        }
+
+        $("#movieForm").on("submit", function (event) {
+          event.preventDefault();
+          if (validateAllFields()) {
+            storeMovieData();
+          }
+        });
+
+        // const theaterData = JSON.parse(localStorage.getItem("theaterData"));
+
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

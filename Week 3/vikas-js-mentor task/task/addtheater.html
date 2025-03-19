@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Add Theater</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://kit.fontawesome.com/7403d24233.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      body {
+        background-image: url(./photos/theatre.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+
+      .text-shadow {
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 5px #dc3545 !important;
+      }
+      .rounded-form {
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body class="mb-2">
+    <nav class="navbar navbar-expand-lg bg-danger sticky-top">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand text-white text-shadow fs-4"
+          href="adminPage.html"
+          >ShowTime</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+            <li class="nav-item">
+              <a class="nav-link" href="addMovie.html" id="showForm"
+                >Add Movie</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="addtheater.html">Add Theatre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="new.html">Your Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="yourtheaters.html">Your Theatres</a>
+            </li>
+          </ul>
+          <a href="adminLogin.html"
+            ><i
+              class="fa fa-sign-out text-dark"
+              style="font-size: 24px"
+              id="logout"
+            ></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <form class="rounded-form">
+            <h2 class="text-center text-danger">Theatre Registration</h2>
+
+            <div class="mb-3">
+              <label for="theaterName" class="form-label">Theater Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="theaterName"
+                placeholder="Theater Name"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+
+            <div class="mb-3">
+              <label for="theaterDescription" class="form-label"
+                >Theater Description</label
+              >
+              <textarea
+                class="form-control"
+                id="theaterDescription"
+                placeholder="About Theater"
+                rows="3"
+                required
+              ></textarea>
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+
+            <div class="mb-3">
+              <label for="theaterImage" class="form-label">Theatre Image</label>
+              <input
+                class="form-control"
+                type="file"
+                id="theaterImage"
+                accept="image/*"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="address" class="form-label">Theater Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder="Theater Address"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+            <div class="mb-3">
+              <label for="totalSeats" class="form-label">Total Seats</label>
+              <input
+                type="number"
+                class="form-control"
+                id="totalSeats"
+                placeholder="No. of Seats"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <div class="dropdown" id="seatCategories">
+                  <button
+                    class="btn btn-white border dropdown-toggle w-100 text-start"
+                    type="button"
+                    id="multiSelectDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Seat Categories
+                  </button>
+                  <ul
+                    class="dropdown-menu w-100"
+                    aria-labelledby="multiSelectDropdown"
+                  >
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input category-option"
+                        id="Recliner"
+                        value="Recliner"
+                      />
+                      <label for="Recliner">Recliner</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input category-option"
+                        id="balcony"
+                        value="Balcony"
+                      />
+                      <label for="middle">Balcony</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input category-option"
+                        id="lowerbalcony"
+                        value="Lower Balcony"
+                      />
+                      <label for="lower">Lower Balcony</label>
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-danger mx-3 my-2"></p>
+              </div>
+              <div class="mb-3 col-md-6">
+                <div class="dropdown" id="theatreShows">
+                  <button
+                    class="btn btn-white border dropdown-toggle w-100 text-start"
+                    type="button"
+                    id="multiSelectDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Show Timings
+                  </button>
+                  <ul
+                    class="dropdown-menu w-100"
+                    aria-labelledby="multiSelectDropdown"
+                  >
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="select-all"
+                      />
+                      <label for="select-all">Select All</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input show-timings"
+                        id="morningShow"
+                        value="Morning Show"
+                      />
+                      <label for="morningShow">Morning Show</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input show-timings"
+                        id="matineeShow"
+                        value="Matinee show"
+                      />
+                      <label for="matineeShow">Matinee Show</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input show-timings"
+                        id="firstShow"
+                        value="First Show"
+                      />
+                      <label for="firstShow">First Show</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input show-timings"
+                        id="secondShow"
+                        value="Second Show"
+                      />
+                      <label for="secondShow">Second Show</label>
+                    </li>
+                    <li class="px-2 pb-2">
+                      <input
+                        type="checkbox"
+                        class="form-check-input show-timings"
+                        id="premierShow"
+                        value="Premier Show"
+                      />
+                      <label for="">Premier Show</label>
+                    </li>
+                  </ul>
+                </div>
+                <p class="text-danger mx-3 my-2"></p>
+              </div>
+            </div>
+            <div class="mb-3 d-none">
+              <label for="recliner-seats" class="form-label">Recliner</label>
+              <input
+                type="number"
+                class="form-control seats"
+                id="recliner-seats"
+                placeholder="No. of Seats"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+            <div class="mb-3 d-none">
+              <label for="balcony-seats" class="form-label">Balcony</label>
+              <input
+                type="number"
+                class="form-control seats"
+                id="balcony-seats"
+                placeholder="No. of Seats"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+            <div class="mb-3 d-none">
+              <label for="lower-balcony-seats" class="form-label"
+                >Lower Balcony</label
+              >
+              <input
+                type="number"
+                class="form-control seats"
+                id="lower-balcony-seats"
+                placeholder="No. of Seats"
+                required
+              />
+              <p class="text-danger mx-3 my-2"></p>
+            </div>
+            <div class="d-grid">
+              <button
+                type="button"
+                id="addTheaterBtn"
+                class="btn btn-danger w-100"
+              >
+                &rarr;
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      let role = localStorage.getItem("role");
+      if (!role) {
+        window.location.href = "adminLogin.html";
+      }
+      $(document).ready(function () {
+        $("#logout").click(function () {
+          localStorage.removeItem("role");
+        });
+        function addSeats() {
+          $("#totalSeats").val(
+            Number($("#recliner-seats").val()) +
+              Number($("#balcony-seats").val()) +
+              Number($("#lower-balcony-seats").val())
+          );
+        }
+        $("#seatCategories").change(function () {
+          let checked = $(".category-option:checked");
+          console.log(typeof checked);
+          $("#recliner-seats").parent("div").addClass("d-none");
+          $("#recliner-seats").val(0);
+          $("#balcony-seats").parent("div").addClass("d-none");
+          $("#balcony-seats").val(0);
+          $("#lower-balcony-seats").parent("div").addClass("d-none");
+          $("#lower-balcony-seats").val(0);
+
+          checked.map((index, element) => {
+            if (element.value == "Recliner") {
+              $("#recliner-seats").parent("div").removeClass("d-none");
+            }
+            if (element.value == "Balcony") {
+              $("#balcony-seats").parent("div").removeClass("d-none");
+            }
+            if (element.value == "Lower Balcony") {
+              $("#lower-balcony-seats").parent("div").removeClass("d-none");
+            }
+          });
+          addSeats();
+        });
+        $(".seats").on("input", addSeats);
+        let selectAll = document.getElementById("select-all");
+        if (selectAll) {
+          selectAll.addEventListener("change", (event) => {
+            let isChecked = $(event.target).is(":checked");
+            $(".show-timings").prop("checked", isChecked);
+          });
+        }
+        $("#addTheaterBtn").on("click", function (event) {
+          event.preventDefault();
+
+          let isValid = true;
+          $(".form-control").each(function () {
+            if ($(this).val() === "") {
+              isValid = false;
+              $(this).next("p").text("This field is required.");
+            } else {
+              $(this).next("p").text("");
+            }
+          });
+          $(".category-option:checked, .show-timings:checked").each(
+            function () {
+              if ($(this).is(":checked") === false) {
+                isValid = false;
+                $(this).next("p").text("This field is required.");
+              } else {
+                $(this).next("p").text("");
+              }
+            }
+          );
+
+          if (isValid) {
+            const formData = {
+              theaterName: $("#theaterName").val(),
+              theaterDescription: $("#theaterDescription").val(),
+              address: $("#address").val(),
+              totalSeats: $("#totalSeats").val(),
+              seatCategories: $(".category-option:checked")
+                .map(function () {
+                  let categoryName = $(this).val();
+                  let seatCount = Number(
+                    $(
+                      `#${categoryName.toLowerCase().replace(" ", "-")}-seats`
+                    ).val()
+                  );
+                  return { [categoryName]: seatCount };
+                })
+                .get(),
+              showTimings: $(".show-timings:checked")
+                .map(function () {
+                  return $(this).val();
+                })
+                .get(),
+            };
+            const theaterImage = $("#theaterImage")[0].files[0];
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              formData.theaterImage = event.target.result;
+              let existingTheaters =
+                JSON.parse(localStorage.getItem("theaterData")) || [];
+              existingTheaters.push(formData);
+              localStorage.setItem(
+                "theaterData",
+                JSON.stringify(existingTheaters)
+              );
+
+              alert("Theater added successfully");
+              window.location.href = "yourtheaters.html";
+            };
+            reader.readAsDataURL(theaterImage);
+          }
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
